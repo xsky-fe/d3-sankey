@@ -8,7 +8,8 @@ export default function() {
       nodePadding = 8,
       size = [1, 1],
       nodes = [],
-      links = [];
+      links = [],
+      nodeOrder = function(a, b) { return a.y - b.y };
 
   sankey.nodeWidth = function(_) {
     if (!arguments.length) return nodeWidth;
@@ -79,6 +80,12 @@ export default function() {
 
     return link;
   };
+
+  sankey.nodeOrder = function(_) {
+    if (!arguments.length) return nodeOrder;
+    nodeOrder = _;
+    return sankey;
+  }
 
   // Populate the sourceLinks and targetLinks for each node.
   // Also, if the source and target are not objects, assume they are indices.
@@ -256,7 +263,7 @@ export default function() {
     }
 
     function ascendingDepth(a, b) {
-      return a.y - b.y;
+      return nodeOrder(a, b);
     }
   }
 
