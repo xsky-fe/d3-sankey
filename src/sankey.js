@@ -9,7 +9,7 @@ export default function() {
       size = [1, 1],
       nodes = [],
       links = [],
-      nodeOrder = function(a, b) { return a.y - b.y };
+      nodeOrder = function(a, b) { return a.id - b.id };
 
   sankey.nodeWidth = function(_) {
     if (!arguments.length) return nodeWidth;
